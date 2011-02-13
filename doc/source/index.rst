@@ -34,6 +34,8 @@ And from the command-line::
     George  | 3401  | Finance
     Harriet | 2202  | Sales
 
+.. note:: The command-line utility is not yet implemented.
+
 Installation
 ------------
 
