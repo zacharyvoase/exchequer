@@ -1,0 +1,171 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>exchequer — Convenience functions &mdash; Exchequer v0.0.0
+ documentation</title>
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.0
+',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Exchequer v0.0.0
+ documentation" href="index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">Exchequer v0.0.0
+ documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="exchequer-convenience-functions">
+<h1><tt class="xref py py-mod docutils literal"><span class="pre">exchequer</span></tt> &#8212; Convenience functions<a class="headerlink" href="#exchequer-convenience-functions" title="Permalink to this headline">¶</a></h1>
+<p>This is the top-level module, which should be your starting point for
+interaction with the library. The methods here are designed to get you off the
+ground as soon as possible.</p>
+<div class="section" id="print-table">
+<h2><a class="reference internal" href="#exchequer.print_table" title="exchequer.print_table"><tt class="xref py py-func docutils literal"><span class="pre">print_table()</span></tt></a><a class="headerlink" href="#print-table" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="exchequer.print_table">
+<tt class="descclassname">exchequer.</tt><tt class="descname">print_table</tt><big>(</big><em>rows</em>, <em>header=True</em>, <em>outfile=None</em>, <em>justify=unicode.ljust</em><big>)</big><a class="reference internal" href="_modules/exchequer.html#print_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#exchequer.print_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a list of rows as a text table.</p>
+<p>A basic example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Name&#39;</span><span class="p">,</span> <span class="s">&#39;EmpId&#39;</span><span class="p">,</span> <span class="s">&#39;DeptName&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Harry&#39;</span><span class="p">,</span> <span class="mi">3415</span><span class="p">,</span> <span class="s">&#39;Finance&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Sally&#39;</span><span class="p">,</span> <span class="mi">2241</span><span class="p">,</span> <span class="s">&#39;Sales&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;George&#39;</span><span class="p">,</span> <span class="mi">3401</span><span class="p">,</span> <span class="s">&#39;Finance&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Harriet&#39;</span><span class="p">,</span> <span class="mi">2202</span><span class="p">,</span> <span class="s">&#39;Sales&#39;</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">Name    | EmpId | DeptName</span>
+<span class="go">--------+-------+---------</span>
+<span class="go">Harry   | 3415  | Finance</span>
+<span class="go">Sally   | 2241  | Sales</span>
+<span class="go">George  | 3401  | Finance</span>
+<span class="go">Harriet | 2202  | Sales</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>header</strong> &#8211; Whether or not this table has a header row.</li>
+<li><strong>outfile</strong> &#8211; The file-like object to write to (default: <tt class="docutils literal"><span class="pre">sys.stdout</span></tt>).</li>
+<li><strong>justify</strong> &#8211; A function to justify text in a cell (default:
+<tt class="docutils literal"><span class="pre">unicode.ljust</span></tt>).</li>
+<li><strong>encoding</strong> &#8211; An encoding to assume when dealing with bytestrings
+(default: utf-8).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>With the <cite>outfile</cite> parameter, you can write output to any file-like object
+(such as a <tt class="xref py py-class docutils literal"><span class="pre">StringIO</span></tt>, <tt class="docutils literal"><span class="pre">sys.stderr</span></tt> or a location on the
+filesystem):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">out</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">outfile</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">out</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="go">Name    | EmpId | DeptName</span>
+<span class="go">--------+-------+---------</span>
+<span class="go">Harry   | 3415  | Finance</span>
+<span class="go">Sally   | 2241  | Sales</span>
+<span class="go">George  | 3401  | Finance</span>
+<span class="go">Harriet | 2202  | Sales</span>
+</pre></div>
+</div>
+<p>You can modify justification rules using <cite>justify</cite>. It must be a callable
+which will receive a unicode object (the cell) and a column length; you can
+use the methods <tt class="docutils literal"><span class="pre">unicode.ljust</span></tt>, <tt class="docutils literal"><span class="pre">unicode.rjust</span></tt> and
+<tt class="docutils literal"><span class="pre">unicode.center</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">print_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="nb">unicode</span><span class="o">.</span><span class="n">rjust</span><span class="p">)</span>
+<span class="go">   Name | EmpId | DeptName</span>
+<span class="go">--------+-------+---------</span>
+<span class="go">  Harry |  3415 |  Finance</span>
+<span class="go">  Sally |  2241 |    Sales</span>
+<span class="go"> George |  3401 |  Finance</span>
+<span class="go">Harriet |  2202 |    Sales</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">exchequer</span></tt> &#8212; Convenience functions</a><ul>
+<li><a class="reference internal" href="#print-table"><tt class="docutils literal"><span class="pre">print_table()</span></tt></a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/exchequer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <a href="http://creativecommons.org/publicdomain/zero/1.0/">No rights reserved</a> |
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

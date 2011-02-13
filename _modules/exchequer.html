@@ -1,0 +1,168 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>exchequer &mdash; Exchequer v0.0.0
+ documentation</title>
+    <link rel="stylesheet" href="../_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.0
+',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Exchequer v0.0.0
+ documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="../_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Exchequer v0.0.0
+ documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for exchequer</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+
+<span class="k">def</span> <span class="nf">column_lengths</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get the maximum column lengths of a given iterable of rows.</span>
+
+<span class="sd">    Returns an empty tuple if no rows are given. All rows must be of the same</span>
+<span class="sd">    length, otherwise a :exc:`ValueError` will be raised. This function is</span>
+<span class="sd">    unicode-ready; :func:`unicode` will be called on every item to get its</span>
+<span class="sd">    string representation (for determining length).</span>
+
+<span class="sd">        &gt;&gt;&gt; column_lengths([(&#39;a&#39;, &#39;bcdef&#39;, &#39;gh&#39;), (&#39;fed&#39;, &#39;up&#39;, &#39;boring&#39;)])</span>
+<span class="sd">        (3, 5, 6)</span>
+<span class="sd">        &gt;&gt;&gt; column_lengths([])</span>
+<span class="sd">        ()</span>
+<span class="sd">        &gt;&gt;&gt; column_lengths([(&#39;a&#39;, &#39;b&#39;), (&#39;1&#39;, &#39;2&#39;, &#39;3&#39;)])</span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">        ...</span>
+<span class="sd">        ValueError: Row 1: expected 2 columns, got 3</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">columns</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Row </span><span class="si">%d</span><span class="s">: expected </span><span class="si">%d</span><span class="s"> columns, got </span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">cell</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+                <span class="n">columns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">cell</span><span class="p">)),</span> <span class="n">columns</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="print_table"><a class="viewcode-back" href="../exchequer.html#exchequer.print_table">[docs]</a><span class="k">def</span> <span class="nf">print_table</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">outfile</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">justify</span><span class="o">=</span><span class="nb">unicode</span><span class="o">.</span><span class="n">ljust</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Print a list of rows as a text table.</span>
+
+<span class="sd">    A basic example::</span>
+
+<span class="sd">        &gt;&gt;&gt; data = [</span>
+<span class="sd">        ...     (&#39;Name&#39;, &#39;EmpId&#39;, &#39;DeptName&#39;),</span>
+<span class="sd">        ...     (&#39;Harry&#39;, 3415, &#39;Finance&#39;),</span>
+<span class="sd">        ...     (&#39;Sally&#39;, 2241, &#39;Sales&#39;),</span>
+<span class="sd">        ...     (&#39;George&#39;, 3401, &#39;Finance&#39;),</span>
+<span class="sd">        ...     (&#39;Harriet&#39;, 2202, &#39;Sales&#39;)]</span>
+<span class="sd">        &gt;&gt;&gt; print_table(data)</span>
+<span class="sd">        Name    | EmpId | DeptName</span>
+<span class="sd">        --------+-------+---------</span>
+<span class="sd">        Harry   | 3415  | Finance</span>
+<span class="sd">        Sally   | 2241  | Sales</span>
+<span class="sd">        George  | 3401  | Finance</span>
+<span class="sd">        Harriet | 2202  | Sales</span>
+
+<span class="sd">    :param header: Whether or not this table has a header row.</span>
+<span class="sd">    :param outfile: The file-like object to write to (default: ``sys.stdout``).</span>
+<span class="sd">    :param justify: A function to justify text in a cell (default:</span>
+<span class="sd">                    ``unicode.ljust``).</span>
+
+<span class="sd">    You can modify justification rules using `justify`. It will be called with</span>
+<span class="sd">    a unicode object (the cell) and a column length, so you can use the methods</span>
+<span class="sd">    ``unicode.ljust``, ``unicode.rjust`` and ``unicode.center``.</span>
+
+<span class="sd">        &gt;&gt;&gt; print_table(data, justify=unicode.rjust)</span>
+<span class="sd">           Name | EmpId | DeptName</span>
+<span class="sd">        --------+-------+---------</span>
+<span class="sd">          Harry |  3415 |  Finance</span>
+<span class="sd">          Sally |  2241 |    Sales</span>
+<span class="sd">         George |  3401 |  Finance</span>
+<span class="sd">        Harriet |  2202 |    Sales</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">first_pass</span><span class="p">,</span> <span class="n">second_pass</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">column_lengths</span><span class="p">(</span><span class="n">first_pass</span><span class="p">)</span>
+
+    <span class="n">format_row</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="s">&#39; | &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">justify</span><span class="p">(</span><span class="nb">unicode</span><span class="p">(</span><span class="n">cell</span><span class="p">),</span> <span class="n">length</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">columns</span><span class="p">))</span>
+    <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">outfile</span><span class="p">,</span> <span class="n">format_row</span><span class="p">(</span><span class="n">second_pass</span><span class="o">.</span><span class="n">next</span><span class="p">())</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">header</span><span class="p">:</span>
+        <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">outfile</span><span class="p">,</span> <span class="s">&#39;-+-&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;-&#39;</span> <span class="o">*</span> <span class="n">length</span> <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">second_pass</span><span class="p">:</span>
+        <span class="k">print</span> <span class="o">&gt;&gt;</span><span class="n">outfile</span><span class="p">,</span> <span class="n">format_row</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <a href="http://creativecommons.org/publicdomain/zero/1.0/">No rights reserved</a> |
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>

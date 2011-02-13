@@ -1,0 +1,144 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Exchequer &mdash; Exchequer v0.0.0
+ documentation</title>
+    <link rel="stylesheet" href="_static/flasky.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.0.0
+',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Exchequer v0.0.0
+ documentation" href="#" />
+   
+  
+  <link media="only screen and (max-device-width: 480px)" href="_static/small_flask.css" type= "text/css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">Exchequer v0.0.0
+ documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="exchequer">
+<h1>Exchequer<a class="headerlink" href="#exchequer" title="Permalink to this headline">¶</a></h1>
+<p>Exchequer is a Python library and command-line utility for printing tables in
+plain-text. Here&#8217;s how it looks from Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">exchequer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exchequer</span><span class="o">.</span><span class="n">print_table</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Name&#39;</span><span class="p">,</span> <span class="s">&#39;EmpId&#39;</span><span class="p">,</span> <span class="s">&#39;DeptName&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Harry&#39;</span><span class="p">,</span> <span class="mi">3415</span><span class="p">,</span> <span class="s">&#39;Finance&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Sally&#39;</span><span class="p">,</span> <span class="mi">2241</span><span class="p">,</span> <span class="s">&#39;Sales&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;George&#39;</span><span class="p">,</span> <span class="mi">3401</span><span class="p">,</span> <span class="s">&#39;Finance&#39;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s">&#39;Harriet&#39;</span><span class="p">,</span> <span class="mi">2202</span><span class="p">,</span> <span class="s">&#39;Sales&#39;</span><span class="p">)],</span> <span class="n">header</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">Name    | EmpId | DeptName</span>
+<span class="go">--------+-------+---------</span>
+<span class="go">Harry   | 3415  | Finance</span>
+<span class="go">Sally   | 2241  | Sales</span>
+<span class="go">George  | 3401  | Finance</span>
+<span class="go">Harriet | 2202  | Sales</span>
+</pre></div>
+</div>
+<p>And from the command-line:</p>
+<div class="highlight-python"><pre>% cat file.txt
+Name,EmpId,DeptName
+Harry,3415,Finance
+Sally,2241,Sales
+George,3401,Finance
+Harriet,2202,Sales
+% exchequer -i csv -o text --header &lt; file.txt
+Name    | EmpId | DeptName
+--------+-------+---------
+Harry   | 3415  | Finance
+Sally   | 2241  | Sales
+George  | 3401  | Finance
+Harriet | 2202  | Sales</pre>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>You can get the module from PyPI:</p>
+<div class="highlight-python"><pre>pip install exchequer</pre>
+</div>
+</div>
+<div class="section" id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Begin with the <a class="reference internal" href="exchequer.html#exchequer.print_table" title="exchequer.print_table"><tt class="xref py py-func docutils literal"><span class="pre">print_table()</span></tt></a> function; this is the simplest
+way to format your tables from Python. You can also read the
+<tt class="xref py py-mod docutils literal"><span class="pre">cli</span></tt> documentation for command-line usage instructions.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Exchequer</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+</ul>
+</li>
+</ul>
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <a href="http://creativecommons.org/publicdomain/zero/1.0/">No rights reserved</a> |
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+    </div>
+  </body>
+</html>
