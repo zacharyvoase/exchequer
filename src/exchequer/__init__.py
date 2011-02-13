@@ -92,3 +92,8 @@ def column_lengths(rows):
             for j, cell in enumerate(row):
                 columns[j] = max(len(cell), columns[j])
     return tuple(columns)
+
+
+def _get_tests():
+    import doctest
+    return doctest.DocTestSuite()
