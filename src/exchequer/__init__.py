@@ -32,7 +32,7 @@ def column_lengths(rows):
     return tuple(columns)
 
 
-def print_table(rows, header=True, justify=unicode.ljust):
+def print_table(rows, header=True, outfile=None, justify=unicode.ljust):
     """
     Print a list of rows as a text table.
 
@@ -66,8 +66,8 @@ def print_table(rows, header=True, justify=unicode.ljust):
     columns = column_lengths(first_pass)
 
     format_row = lambda row: ' | '.join(justify(unicode(cell), length) for cell, length in zip(row, columns))
-    print format_row(second_pass.next()).rstrip()
+    print >>outfile, format_row(second_pass.next()).rstrip()
     if header:
-        print '-+-'.join('-' * length for length in columns)
+        print >>outfile, '-+-'.join('-' * length for length in columns)
     for row in second_pass:
-        print format_row(row).rstrip()
+        print >>outfile, format_row(row).rstrip()
