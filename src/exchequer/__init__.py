@@ -36,13 +36,15 @@ def print_table(rows, header=True, outfile=None, justify=unicode.ljust):
     """
     Print a list of rows as a text table.
 
+    A basic example::
+
         >>> data = [
         ...     ('Name', 'EmpId', 'DeptName'),
         ...     ('Harry', 3415, 'Finance'),
         ...     ('Sally', 2241, 'Sales'),
         ...     ('George', 3401, 'Finance'),
         ...     ('Harriet', 2202, 'Sales')]
-        >>> print_table(data, header=True)
+        >>> print_table(data)
         Name    | EmpId | DeptName
         --------+-------+---------
         Harry   | 3415  | Finance
@@ -50,17 +52,10 @@ def print_table(rows, header=True, outfile=None, justify=unicode.ljust):
         George  | 3401  | Finance
         Harriet | 2202  | Sales
 
-    You can modify justification rules using `justify`. It will be called with
-    a unicode object (the cell) and a column length, so you can use the methods
-    ``unicode.ljust``, ``unicode.rjust`` and ``unicode.center``.
-
-        >>> print_table(data, header=True, justify=unicode.rjust)
-           Name | EmpId | DeptName
-        --------+-------+---------
-          Harry |  3415 |  Finance
-          Sally |  2241 |    Sales
-         George |  3401 |  Finance
-        Harriet |  2202 |    Sales
+    :param header: Whether or not this table has a header row.
+    :param outfile: The file-like object to write to (default: ``sys.stdout``).
+    :param justify: A function to justify text in a cell (default:
+                    ``unicode.ljust``).
     """
     first_pass, second_pass = itertools.tee(iter(rows))
     columns = column_lengths(first_pass)

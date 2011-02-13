@@ -40,3 +40,10 @@ Installation
 You can get the module from PyPI::
 
     pip install exchequer
+
+Quickstart
+----------
+
+Begin with the :func:`~exchequer.print_table` function; this is the simplest
+way to format your tables from Python. You can also read the
+:mod:`~exchequer.cli` documentation for command-line usage instructions.
