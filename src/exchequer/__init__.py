@@ -1,39 +1,6 @@
 import itertools
 
 
-def column_lengths(rows):
-    """
-    Get the maximum column lengths of a given iterable of rows.
-
-    Returns an empty tuple if no rows are given. All rows must be of the same
-    length, otherwise a :exc:`ValueError` will be raised. This function is
-    unicode-ready; :func:`unicode` will be called on every item to get its
-    string representation (for determining length).
-
-        >>> column_lengths([('a', 'bcdef', 'gh'), ('fed', 'up', 'boring')])
-        (3, 5, 6)
-        >>> column_lengths([])
-        ()
-        >>> column_lengths([('a', 'b'), ('1', '2', '3')])
-        Traceback (most recent call last):
-        ...
-        ValueError: Row 1: expected 2 columns, got 3
-    """
-    columns = []
-    len_columns = 0
-    for i, row in enumerate(rows):
-        if columns and len_columns != len(row):
-            raise ValueError("Row %d: expected %d columns, got %d" % (
-                i, len_columns, len(row)))
-        elif not columns:
-            columns = [len(cell) for cell in row]
-            len_columns = len(columns)
-        else:
-            for j, cell in enumerate(row):
-                columns[j] = max(len(cell), columns[j])
-    return tuple(columns)
-
-
 def print_table(rows, header=True, outfile=None, justify=unicode.ljust, encoding='utf-8'):
     """
     Print a list of rows as a text table.
@@ -92,3 +59,36 @@ def ensure_text(row_iterator, encoding='utf-8'):
 
     for row in row_iterator:
         yield map(cell_to_unicode, row)
+
+
+def column_lengths(rows):
+    """
+    Get the maximum column lengths of a given iterable of rows.
+
+    Returns an empty tuple if no rows are given. All rows must be of the same
+    length, otherwise a :exc:`ValueError` will be raised. This function is
+    unicode-ready; :func:`unicode` will be called on every item to get its
+    string representation (for determining length).
+
+        >>> column_lengths([('a', 'bcdef', 'gh'), ('fed', 'up', 'boring')])
+        (3, 5, 6)
+        >>> column_lengths([])
+        ()
+        >>> column_lengths([('a', 'b'), ('1', '2', '3')])
+        Traceback (most recent call last):
+        ...
+        ValueError: Row 1: expected 2 columns, got 3
+    """
+    columns = []
+    len_columns = 0
+    for i, row in enumerate(rows):
+        if columns and len_columns != len(row):
+            raise ValueError("Row %d: expected %d columns, got %d" % (
+                i, len_columns, len(row)))
+        elif not columns:
+            columns = [len(cell) for cell in row]
+            len_columns = len(columns)
+        else:
+            for j, cell in enumerate(row):
+                columns[j] = max(len(cell), columns[j])
+    return tuple(columns)
