@@ -32,27 +32,40 @@ def column_lengths(rows):
     return tuple(columns)
 
 
-def print_table(rows, header=True):
+def print_table(rows, header=True, justify=unicode.ljust):
     """
     Print a list of rows as a text table.
 
-        >>> print_table([
+        >>> data = [
         ...     ('Name', 'EmpId', 'DeptName'),
         ...     ('Harry', 3415, 'Finance'),
         ...     ('Sally', 2241, 'Sales'),
         ...     ('George', 3401, 'Finance'),
-        ...     ('Harriet', 2202, 'Sales')], header=True)
+        ...     ('Harriet', 2202, 'Sales')]
+        >>> print_table(data, header=True)
         Name    | EmpId | DeptName
         --------+-------+---------
         Harry   | 3415  | Finance
         Sally   | 2241  | Sales
         George  | 3401  | Finance
         Harriet | 2202  | Sales
+
+    You can modify justification rules using `justify`. It will be called with
+    a unicode object (the cell) and a column length, so you can use the methods
+    ``unicode.ljust``, ``unicode.rjust`` and ``unicode.center``.
+
+        >>> print_table(data, header=True, justify=unicode.rjust)
+           Name | EmpId | DeptName
+        --------+-------+---------
+          Harry |  3415 |  Finance
+          Sally |  2241 |    Sales
+         George |  3401 |  Finance
+        Harriet |  2202 |    Sales
     """
     first_pass, second_pass = itertools.tee(iter(rows))
     columns = column_lengths(first_pass)
 
-    format_row = lambda row: ' | '.join(str(cell).ljust(length) for cell, length in zip(row, columns))
+    format_row = lambda row: ' | '.join(justify(unicode(cell), length) for cell, length in zip(row, columns))
     print format_row(second_pass.next()).rstrip()
     if header:
         print '-+-'.join('-' * length for length in columns)
